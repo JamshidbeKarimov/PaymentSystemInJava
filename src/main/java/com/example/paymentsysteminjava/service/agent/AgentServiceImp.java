@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Primary
+//@Primary
 @Service("a")
 @RequiredArgsConstructor
 public class AgentServiceImp implements UserService {
@@ -31,11 +31,6 @@ public class AgentServiceImp implements UserService {
         if (agent != null)
             throw new LoginValidationException("username is already exists");
 
-//        AgentEntity agentEntity = new AgentEntity();
-//        agentEntity.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
-//        agentEntity.setPermission(userRegisterDto.getPermission().get(0));
-//        agentEntity.setName(userRegisterDto.getName());
-//        agentEntity.setUsername(userRegisterDto.getUsername());
         AgentEntity agentEntity = modelMapper.map(agentRegisterDto, AgentEntity.class);
         agentEntity.setPassword(passwordEncoder.encode(agentEntity.getPassword()));
         agentRepository.save(agentEntity);

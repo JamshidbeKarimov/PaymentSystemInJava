@@ -7,6 +7,7 @@ import com.example.paymentsysteminjava.entity.UserEntity;
 import com.example.paymentsysteminjava.repository.UserRepository;
 import com.example.paymentsysteminjava.service.jwt.JwtProvider;
 import com.example.paymentsysteminjava.service.user.UserService;
+import com.example.paymentsysteminjava.service.user.UserServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class AuthController {
 
     private final JwtProvider jwtProvider;
 
-    private final UserService userService;
+    private final UserServiceImp userService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 

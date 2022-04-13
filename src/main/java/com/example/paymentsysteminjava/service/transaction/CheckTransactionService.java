@@ -41,7 +41,7 @@ public class CheckTransactionService {
                         agentServiceRepository.findByAgentId(agentEntity.getId()).getCommission()));
         transactionRepository.save(transactionEntity);
 
-        OsonServiceEntity osonServiceEntity = osonRepository.getById(defaultAgentRequest.getServiceId());
+        OsonServiceEntity osonServiceEntity = osonRepository.findById(defaultAgentRequest.getServiceId()).get();
         MerchantServiceEntity merchantServiceEntity = osonServiceEntity.getMerchantServiceEntity();
         MerchantEntity merchantEntity = merchantServiceEntity.getMerchantEntity();
 

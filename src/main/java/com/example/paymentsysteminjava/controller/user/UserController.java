@@ -3,6 +3,7 @@ package com.example.paymentsysteminjava.controller.user;
 import com.example.paymentsysteminjava.dto.UserRegisterDto;
 import com.example.paymentsysteminjava.service.jwt.JwtProvider;
 import com.example.paymentsysteminjava.service.user.UserService;
+import com.example.paymentsysteminjava.service.user.UserServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/user/")
 public class UserController {
 
-    @Qualifier("u")
-    private final UserService userService;
+
+    private final UserServiceImp userService;
     private final JwtProvider jwtProvider;
 
 

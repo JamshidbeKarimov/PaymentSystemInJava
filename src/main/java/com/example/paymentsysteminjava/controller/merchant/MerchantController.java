@@ -23,7 +23,6 @@ public class MerchantController {
     public ResponseEntity<?> add(@RequestBody MerchantRegisterDto merchantRegisterDto) {
 
         return ResponseEntity.ok().body(merchantService.add(merchantRegisterDto));
-//        return ResponseEntity.status(HttpStatus.CONFLICT).body("Something is wrong");
     }
 
 }

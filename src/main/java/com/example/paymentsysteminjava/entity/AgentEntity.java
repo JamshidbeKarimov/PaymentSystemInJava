@@ -14,20 +14,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
 @Setter
 @DiscriminatorValue(value = "agent_entity")
-public class AgentEntity extends UserEntity{
+public class AgentEntity extends UserEntity {
     @Transient
-    private Boolean isPaynet = (super.id == 10);
+    private Boolean isPaynet;
     @Transient
     private Boolean isClick = (super.id == 20);
     @Transient
     private Boolean isApelsin = (super.id == 30);
     @Transient
-    private Boolean isPayme = (super.id == 40);
+    private Boolean isPayme;
 
 
+    public boolean isPaynet() {
+        return id == 4;
+    }
+    public boolean isPayme() {
+        return id == 12;
+    }
 
     @JsonIgnore
     @Override

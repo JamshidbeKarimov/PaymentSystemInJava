@@ -6,41 +6,47 @@ import com.example.paymentsysteminjava.entity.MerchantEntity;
 import com.example.paymentsysteminjava.entity.MerchantServiceEntity;
 import com.example.paymentsysteminjava.entity.transaction.TransactionEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaynetAgentResponse implements BaseAgentResponse {
+@Data
+@JacksonXmlRootElement(localName = "response")
+public class PaymeAgentCheckResponse implements BaseAgentResponse {
+
+    @JacksonXmlProperty(localName = "transaction_id")
     private long transactionId;
+
+    @JacksonXmlProperty(localName = "status")
     private int status;
-    private String serviceName;
-    private BigDecimal amountToAccount;
-    private String response;
+
+    @JacksonXmlProperty(localName = "message")
+    private String message;
+
 
     @JsonIgnore
     @Override
     public BaseAgentResponse success(AgentEntity agent, MerchantEntity merchantEntity, MerchantServiceEntity merchantServiceEntity, TransactionEntity transaction) {
-        return new PaynetAgentResponse(
+        return new PaymeAgentCheckResponse(
                 transaction.getId(),
-                transaction.getTransactionState(),
-                merchantServiceEntity.getName(),
-                transaction.getTransactionAmountToMerchant(),
-                "transaction is ready"
+                1,
+                "success"
+
         );
     }
 
     @JsonIgnore
     @Override
     public BaseAgentResponse error(AgentEntity agent, MerchantEntity merchantEntity, MerchantServiceEntity merchantServiceEntity, TransactionEntity transaction) {
-        return new PaynetAgentResponse(
+        return new PaymeAgentCheckResponse(
                 transaction.getId(),
-                transaction.getTransactionState(),
-                merchantServiceEntity.getName(),
-                transaction.getTransactionAmountToMerchant(),
-                "transaction is fain in check process"
+                -100,
+                "error"
+
         );
     }
 }
