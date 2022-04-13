@@ -18,13 +18,15 @@ import java.util.Set;
 @DiscriminatorValue(value = "agent_entity")
 public class AgentEntity extends UserEntity {
     @Transient
-    private Boolean isPaynet;
+    private Boolean isPaynet = (super.id == 10);
     @Transient
     private Boolean isClick = (super.id == 20);
     @Transient
     private Boolean isApelsin = (super.id == 30);
     @Transient
-    private Boolean isPayme;
+    private Boolean isPayme = (super.id == 40);
+
+
 
 
     public boolean isPaynet() {
